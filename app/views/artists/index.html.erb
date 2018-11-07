@@ -1,2 +1,27 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<p>アーティスト一覧</p>
+
+<table class="table">
+  <tr>
+    <th>
+      <p>アーティスト名</p>
+    </th>
+    <th>
+      <p>説明</p>
+    </th>
+  </tr>
+
+  <% @artists.each do |artist| %>
+  <tr>
+    <td>
+      <%= link_to artist_path(artist.id) do %>
+      <%= artist.artist_name %>
+    </td>
+    <td>
+      <%= artist.artist_details %>
+    </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to "アーティスト新規登録", new_artist_path %>

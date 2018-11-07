@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root :to => 'tops#top'
+
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -13,19 +15,26 @@ Rails.application.routes.draw do
 }
 
 resources :users, only:[:index, :show, :edit, :update, :destroy]
-resources :artists
-resources :movies, only:[:new, :create, :edit, :update, :destroy]
-resources :lives, except:[:index]
+
+resources :artists do
+	resource :favorites, only:[:create, :destroy]
+	resources :movies, only:[:new, :create, :edit, :update, :destroy]
+	resources :thumnails, only:[:create, :update, :destroy]
+	resources :lives, except:[:index] do
+		resources :posts do
+			resource :likes, only:[ :create, :destroy]
+			resources :comments, except:[:index, :show] do
+				member do
+					get :reply
+				end
+			end
+		end
+	end
+end
+
+get "/favorites" => "favorites#index"
+
 resources :places, only:[:new, :create, :edit, :update, :destroy]
-resource :favorites, only:[:index, :create, :destroy]
-resource :likes, only:[ :create, :destroy]
-resources :posts do
-  resources :comments, except:[:index, :show] do
-   member do
-    get :reply
-   end
-  end
- end
 
 get "/top" => "tops#top"
 get "/about" => "tops#about"

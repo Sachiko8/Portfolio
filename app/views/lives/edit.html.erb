@@ -1,2 +1,10 @@
-<h1>Lives#edit</h1>
-<p>Find me in app/views/lives/edit.html.erb</p>
+<p>ライブ編集</p>
+
+	<%= form_for(@live) do |f| %>
+	<p>アーティスト名</p>
+	<%= f.text_field :when %>
+  <%= f.text_field :place_id %>
+  <%= f.text_field :live_title %>
+
+	<%= f.submit '編集' %>
+	<% end %>

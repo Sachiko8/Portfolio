@@ -1,2 +1,7 @@
-<h1>Favorites#index</h1>
-<p>Find me in app/views/favorites/index.html.erb</p>
+<h3>お気に入りアーティスト</h3>
+    <% @favariteartists.each do |product| %>
+
+          <%= link_to artist_path(product.id) do %>
+              <%= attachment_image_tag product, :image %>
+              <%= artist.artist_name %>
+          <% end %>

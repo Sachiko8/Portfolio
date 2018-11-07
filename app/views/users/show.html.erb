@@ -1,2 +1,39 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<p>ユーザー情報</p>
+<table class="table" >
+        <tr>
+          <td>
+            <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '100x100' %>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>名前</p>
+          </td>
+          <td>
+            <%= @user.user_name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>ニックネーム</p>
+          </td>
+          <td>
+            <%= @user.nickname %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>メールアドレス</p>
+          </td>
+          <td>
+            <%= @user.email %>
+          </td>
+        </tr>
+  </table>
+
+  <%= link_to "編集", edit_user_path(@user) %>
+  <%= link_to "退会する", user_path(@user), method: :delete %>
+
+  <%= link_to "トップへ戻る", root_path %>

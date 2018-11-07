@@ -1,2 +1,9 @@
-<h1>Artists#new</h1>
-<p>Find me in app/views/artists/new.html.erb</p>
+<p>アーティスト新規登録</p>
+
+
+<%= form_for(@artist) do |f| %>
+  <p>アーティスト名：<%= f.text_field :artist_name %></p>
+  <p>アーティスト説明：<%= f.text_field :artist_details %></p>
+  <p>アーティスト画像：<%= f.attachment_field :thumbnails_images, multiple: true %></p>
+  <%= f.submit '追加' %>
+<% end %>
