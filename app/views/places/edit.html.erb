@@ -1,2 +1,9 @@
-<h1>Places#edit</h1>
-<p>Find me in app/views/places/edit.html.erb</p>
+<p>ライブ会場編集</p>
+
+	<%= form_for(@place) do |f| %>
+	<p>会場名</p>
+	<%= f.text_field :place %>
+	<%= f.submit '編集' %>
+	<% end %>
+
+	<%= link_to "戻る", back_path %>

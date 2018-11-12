@@ -1,38 +1,60 @@
 <p>アーティスト詳細</p>
 
-アーティスト名：<%= @artist.artist_name %><br>
-アーティスト説明：<%= @artist.artist_details %><br>
-
 <% if @artist.thumbnails.present? %>
   <% @artist.thumbnails.each do |image| %>
     <%= attachment_image_tag image, :image, :fill, 200, 200 %>
   <% end %>
   <% else %>
     <%= image_tag 'no_image.png', size: '200x200' %>
-
 <% end %>
+<p>アーティスト名：<%= @artist.artist_name %></p><br>
+<p>アーティスト説明：<%= @artist.artist_details %></p><br>
 
 <p>movie</p>
 
-<% if @user == admin_user %>
-<%= link_to "編集", edit_artist_path(@artist.id) %>
-<%= link_to "削除", "artists/#{@artist.id}", method: :delete, data: { confirm: "削除してよろしいですか？" } %>
-
-
-<% end %>
-
-
 <p>ライブ一覧</p>
-<% @artists.lives.each do |live| %>
-      <%= link_to artist_path(book.user) do %>
-      <%= @artist.live.when %>
-      <%= @artist.live.place_id %>
-      <%= @artist.live.live_titile %>
+<table class="table">
+  <tr>
+    <th>
+      <p>日程</p>
+    </th>
+    <th>
+      <p>会場</p>
+    </th>
+    <th>
+      <p>ライブ名</p>
+    </th>
+    <th></th>
+  </tr>
+
+
+<% @artist.lives.each do |live| %>
+<tr>
+  <%= link_to artist_live_path(live.id) do %>
+    <td>
+      <%= live.when.strftime('%Y/%m/%d') %>
+    </td>
+    <td>
+      <%= Place.find(live.place_id).place %>
+    </td>
+    <td>
+      <%= live.live_title %>
+    </td>
+    <% end %>
+    <td>
+      <%= link_to "ライブ詳細", artist_live_path(@artist, live.id) %>
+      <% if current_admin %>
+      <%= link_to "ライブ削除", artist_live_path(@artist, live.id), method: :delete %>
+    <% end %>
+  </td>
+</tr>
 <% end %>
+</table>
+
+
+
+<% if current_admin %>
+    <%= link_to "アーティスト編集", edit_artist_path(@artist) %>
+    <%= link_to "ライブ追加", new_artist_live_path(@artist) %>
 <% end %>
 
-<% if @user == admin_user %>
-    <%= link_to "ライブ追加", path %>
-    <%= link_to "ライブ編集", path %>
-    <%= link_to "ライブ削除", path, method: :delete %>
-    <% end %>

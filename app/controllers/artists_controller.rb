@@ -10,7 +10,6 @@ class ArtistsController < ApplicationController
 
   def create
     artist = Artist.new(artist_params)
-    binding.pry
     artist.save
     redirect_to artists_path
   end
@@ -25,7 +24,7 @@ class ArtistsController < ApplicationController
 
   def update
     artist = Artist.find_by(id: params[:id])
-    artist.update(user_params)
+    artist.update(artist_params)
     redirect_to artist_path(artist)
   end
 
