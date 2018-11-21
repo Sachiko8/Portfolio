@@ -1,8 +1,8 @@
 class LivesController < ApplicationController
   def show
     @artist = Artist.find(params[:artist_id])
-    @live = Live.find(params[:id])
-    @post = Post.new
+    @live = Live.find_by(id: params[:id])
+    @comment = Comment.new
   end
 
   def new

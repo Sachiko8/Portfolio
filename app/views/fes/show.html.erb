@@ -1,0 +1,58 @@
+<div class="container">
+<p>フェス詳細</p>
+
+    <h4>コメント</h4>
+
+    <div id="comments_area">
+
+      <table class="table" >
+  <div class="social">
+<% @comments.each do |comment| %>
+  <% unless comment.id.nil? %>
+                <tr>
+              <td>
+          <p><%= comment.user.nickname %>さん</p>
+          <p>コメント：<%= comment.contents %></p>
+<% if current_user %>
+<% if comment.fes_like_user(current_user.id) %>
+  <li>
+    <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :delete do %>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+      <%= comment.fes_likes.count %> いいね
+    <% end %>
+  </li>
+<% else %>
+  <li>
+    <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :post do %>
+    <i class="far fa-heart" aria-hidden="true"></i>
+      <%= comment.fes_likes.count %> いいね
+    <% end %>
+  </li>
+<% end %>
+<% end %>
+
+
+          </td>
+     <td>
+    <% if comment.user == current_user || current_admin %>
+      <p><%= link_to 'コメントを削除する', fe_fes_comment_path(@fe, comment), method: :delete, remote: true %></p>
+    <% end %>
+</td>
+</tr>
+  <% end %>
+<% end %>
+</div>
+</table>
+<% if current_user %>
+
+<%= form_for [@fe, @comment] do |f| %>
+  <div>
+    <%= f.text_area :contents %>
+  </div>
+  <div class="actions">
+    <%= f.submit "コメントをする" %>
+  </div>
+<% end %>
+<% end %>
+<%= link_to "戻る", fes_path %>
+</div>

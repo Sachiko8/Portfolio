@@ -1,14 +1,19 @@
-<p>ライブ会場登録</p>
+<div class="container">
+	<p>ライブ会場登録</p>
 
-	<%= form_for(@place) do |f| %>
+	<%= form_for (@place) do |f| %>
 	<p>会場名</p>
 	<%= f.text_field :place %>
 	<%= f.submit '登録' %>
 	<% end %>
 
+
 	<p>ライブ会場一覧</p>
 	<% @places.each do |place| %>
 	<%= place.place %>
-	<%= link_to "編集", edit_place_path(Place.find_by(id: params[:id])) %>
-	<%= link_to "削除", place_path(Place.find_by(id: params[:id])), method: :delete %>
+	<%= link_to "編集", edit_place_path(place.id) %>
+	<%= link_to "削除", place_path(place.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
 	<% end %>
+<%= link_to "アーティスト一覧へ戻る", artists_path %>
+<%= link_to "フェス一覧へ戻る", fes_path %>
+</div>

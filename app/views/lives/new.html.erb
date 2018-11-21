@@ -1,4 +1,5 @@
-<p>ライブ新規登録</p>
+<div class="container">
+	<p>ライブ新規登録</p>
 <%= @artist.artist_name %>
 
 <%= form_for [@artist, @live] do |f| %>
@@ -12,6 +13,5 @@
 	<%= f.submit '追加' %>
 	<% end %>
 
-
-
-	    <%= link_to "ライブ会場追加", new_place_path %>
+	    <%= link_to "アーティスト詳細に戻る", artist_path(@artist.id) %>
+	</div>

@@ -1,36 +1,40 @@
-<p>アーティスト一覧</p>
+<div class="container">
+<p>Artists</p>
 
-<table class="table">
-  <tr>
-    <th>
-      <p>アーティスト名</p>
-    </th>
-    <th>
-      <p>説明</p>
-    </th>
-    <th>
-    </th>
-  </tr>
-  <% @artists.each do |artist| %>
-  <tr>
-    <td>
-      <%= link_to artist_path(artist.id) do %>
-      <%= artist.artist_name %>
-    </td>
-    <td>
-      <%= artist.artist_details %>
-    </td>
-    <% end %>
-    <td>
-      <%= link_to "詳細", artist_path(artist.id) %>
-      <% if current_admin%>
+<% @artists.each do |artist| %>
+<div class="col-xs-6 col-md-3 top-artist">
+  <%= link_to artist_path(artist.id) do %>
+
+<div class="thumbnail">
+<ul class="bxslider">
+<% if artist.thumbnails.present? %>
+    <% artist.thumbnails.each do |image| %>
+    <%= attachment_image_tag image, :image, size: '200x200' %>
+  <% end %>
+  <% else %>
+    <%= image_tag 'no_image.png', size: '200x200' %>
+<% end %>
+</ul>
+<p class="top-artistname"><%= artist.artist_name %></p>
+
+<% if current_admin%>
       <%= link_to "削除", artist_path(artist.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
       <% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+</div>
+<% end %>
+
+</div>
+<% end %>
+
+
+
+
 
 <% if current_admin %>
 <%= link_to "アーティスト新規登録", new_artist_path %>
+<%= link_to "ライブ会場管理", new_place_path %>
 <% end %>
+
+
+
+</div>

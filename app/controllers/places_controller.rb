@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
   def create
     place = Place.new(place_params)
     place.save
-    redirect_to root_path
+    redirect_to new_place_path
   end
 
   def edit
@@ -17,13 +17,13 @@ class PlacesController < ApplicationController
   def update
     place = Place.find_by(id: params[:id])
     place.update(place_params)
-    redirect_to root_path
+    redirect_to new_place_path
   end
 
   def destroy
     place = Place.find(params[:id])
     place.destroy
-    redirect_to root_path
+    redirect_to new_place_path
   end
 
 

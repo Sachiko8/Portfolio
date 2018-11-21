@@ -71,8 +71,13 @@ gem 'bootstrap-sass'
 # 機能拡張
 gem 'jquery-rails'
 # ページ
-gem 'kaminari'
+#gem 'kaminari'
 
 gem 'pry-rails'
 
-gem 'carrierwave'
+#gem 'google-api-client', '<0.9'
+# gem 'google-api-client', ">= 0.20"
+#gem 'trollop', '~> 2.1'
+
+# gem "thin"
+#gem 'bxslider-rails'

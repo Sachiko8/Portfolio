@@ -1,11 +1,17 @@
-<p>ライブ編集</p>
+<div class="container">
+	<p>ライブ編集</p>
+<%= @artist.artist_name %>
 
-	<%= form_for(@live) do |f| %>
-	<%= live.artist_id.artist_name %>
-  <%= f.text_date :when %>
-  <%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
+<%= form_for [@artist, @live] do |f| %>
+	<p>日時</p>
+	<%= f.date_select :when %>
+  <p>ライブ会場</p>
+    <%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
+  <p>ライブ名</p>
   <%= f.text_field :live_title %>
 
-	<%= f.submit '追加' %>
+	<%= f.submit '更新' %>
 	<% end %>
-	<%= link_to "戻る", artist_path(@live.artist_id) %>
+
+	    <%= link_to "アーティスト詳細に戻る", artist_path(@artist.id) %>
+	</div>

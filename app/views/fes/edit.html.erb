@@ -1,0 +1,15 @@
+<div class="container">
+	<p>フェス編集</p>
+
+<%= form_for(@fes) do |f| %>
+	<p>日時</p>
+	<%= f.date_select :fes_day %>
+  <p>フェス会場</p>
+    <%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
+  <p>フェス名</p>
+  <%= f.text_field :fes_name %>
+
+	<%= f.submit '追加' %>
+	<% end %>
+	<%= link_to "戻る", fes_path %>
+</div>

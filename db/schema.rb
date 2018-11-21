@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_07_100521) do
+ActiveRecord::Schema.define(version: 2018_11_17_110230) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,17 +32,17 @@ ActiveRecord::Schema.define(version: 2018_11_07_100521) do
   create_table "artists", force: :cascade do |t|
     t.string "artist_name"
     t.text "artist_details"
-    t.string "artist_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "artist_kana"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "post_id"
+    t.text "contents"
     t.integer "user_id"
+    t.integer "live_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "comment"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -52,11 +52,34 @@ ActiveRecord::Schema.define(version: 2018_11_07_100521) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "fes", force: :cascade do |t|
+    t.string "fes_name"
+    t.integer "place_id"
+    t.datetime "fes_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fes_comments", force: :cascade do |t|
+    t.text "contents"
+    t.integer "user_id"
+    t.integer "fe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fes_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "fes_comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", force: :cascade do |t|
-    t.integer "post_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comment_id"
   end
 
   create_table "lives", force: :cascade do |t|
@@ -92,14 +115,6 @@ ActiveRecord::Schema.define(version: 2018_11_07_100521) do
     t.string "place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.text "contents"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "live_id"
   end
 
   create_table "thumbnails", force: :cascade do |t|

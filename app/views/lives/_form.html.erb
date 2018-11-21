@@ -1,0 +1,8 @@
+<%= form_with(model: [artist, live, comment], remote: true, local: true ) do |f| %>
+  <div>
+    <%= f.text_area :contents %>
+  </div>
+  <div class="actions">
+    <%= f.submit "コメントをする" %>
+  </div>
+<% end %>

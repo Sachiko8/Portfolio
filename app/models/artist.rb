@@ -1,9 +1,14 @@
 class Artist < ApplicationRecord
-	 has_many :lives, dependent: :destroy
+
+
+	has_many :lives, dependent: :destroy
 	# has_many :movies, dependent: :destroy
-	# belongs_to :favorite
+	has_many :favorites, dependent: :destroy
 	has_many :thumbnails, dependent: :destroy
   	accepts_attachments_for :thumbnails, attachment: :image
 
-	# attachment :artist_image
+    def favorite_user(id)
+    favorites.find_by(user_id: id)
+  end
+
 end

@@ -1,16 +1,32 @@
-<p>アーティスト詳細</p>
-
+<div class="container">
+  <div class="row">
+<div class="col-md-offset-2 col-md-8">
+<ul class="bxslider">
 <% if @artist.thumbnails.present? %>
   <% @artist.thumbnails.each do |image| %>
-    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+    <li><%= attachment_image_tag image, :image, class: "artist-image" %></li>
   <% end %>
   <% else %>
-    <%= image_tag 'no_image.png', size: '200x200' %>
+    <li><%= image_tag 'no_image.png', class: "artist-image" %></li>
 <% end %>
-<p>アーティスト名：<%= @artist.artist_name %></p><br>
-<p>アーティスト説明：<%= @artist.artist_details %></p><br>
+</ul>
 
-<p>movie</p>
+
+<p class="show-artistname"><%= @artist.artist_name %></p><br>
+<p><%= @artist.artist_details %></p><br>
+<% if current_user %>
+              <% if @artist.favorite_user(current_user.id) %>
+              <%= link_to artist_favorites_path(@artist.id), method: :delete, class: "glyphicon btn btn-default" do %>
+              <span class="glyphicon-star-empty">お気に入り済</span>
+              <% end %>
+              <% else %>
+              <%= link_to artist_favorites_path(@artist.id), method: :post, class: "glyphicon btn btn-default" do %>
+              <span class="glyphicon-plus">お気に入り追加</span>
+              <% end %>
+              <% end %>
+              <%end%>
+
+
 
 <p>ライブ一覧</p>
 <table class="table">
@@ -26,7 +42,6 @@
     </th>
     <th></th>
   </tr>
-
 
 <% @artist.lives.each do |live| %>
 <tr>
@@ -44,17 +59,20 @@
     <td>
       <%= link_to "ライブ詳細", artist_live_path(@artist, live.id) %>
       <% if current_admin %>
-      <%= link_to "ライブ削除", artist_live_path(@artist, live.id), method: :delete %>
+      <%= link_to "ライブ編集", edit_artist_live_path(@artist, live.id) %>
+      <%= link_to "ライブ削除", artist_live_path(@artist, live.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
     <% end %>
   </td>
 </tr>
 <% end %>
 </table>
 
-
-
 <% if current_admin %>
     <%= link_to "アーティスト編集", edit_artist_path(@artist) %>
     <%= link_to "ライブ追加", new_artist_live_path(@artist) %>
 <% end %>
+<%= link_to "戻る", artists_path%>
+</div>
+</div>
+</div>
 

@@ -1,32 +1,21 @@
-<p>ライブ詳細</p>
-
-<p>感動を共有する</p>
-
-            <%= form_for [@artist, @live, @post] do |f| %>
-            <%= f.text_area :contents, rows:'5', :size=>"60" ,placeholder: "投稿内容はここに" %>
-            <%= f.submit "送信する" %>
-            <% end %>
-
-            <table class="table" >
-             <% @live.posts.each do |post| %>
-             <tr>
-              <td>
-                <%= attachment_image_tag current_user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '100x100' %>
-                <%= post.created_at.strftime('%Y/%m/%d') %>
-                <%= post.contents %>
-              </td>
-
-              <td>
-                <% if post.user == current_user || current_admin %>
-                <%= link_to "削除", artist_live_post_path(@artist, @live, post.id), method: :delete %>
-                <% end %>
-              </td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
+<div class="container">
+  <p>ライブ詳細</p>
 
 
-<% if current_admin %>
-<%= link_to "ライブ編集", edit_artist_live_path(@artist, @live) %>
-<% end %>
+    <h4>コメント</h4>
+
+
+
+    <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える -->
+      <!-- 投稿されたコメント一覧を表示するためのrender -->
+      <%= render partial:'lives/index', locals: {live: @live, artist: @artist } %>
+    </div>
+    <% if user_signed_in? %>
+      <!-- コメント入力欄を表示するためのrender -->
+      <%= render partial:'lives/form', locals: { comment: @comment, live: @live, artist: @artist } %>
+    <% end %>
+
+  <%= link_to "戻る", artist_path(@artist.id)%>
+</div>
+
+

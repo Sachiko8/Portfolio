@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fes_name: MyString
+  place_id: 1
+  fes_day: 2018-11-15 03:28:01
+
+two:
+  fes_name: MyString
+  place_id: 1
+  fes_day: 2018-11-15 03:28:01
