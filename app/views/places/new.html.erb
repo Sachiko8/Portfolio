@@ -1,19 +1,44 @@
+<%= render "partial/flash" %>
+
 <div class="container">
-	<p>ライブ会場登録</p>
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
 
-	<%= form_for (@place) do |f| %>
-	<p>会場名</p>
-	<%= f.text_field :place %>
-	<%= f.submit '登録' %>
-	<% end %>
+			<h4>会場登録</h4>
 
+			<%= form_for (@place) do |f| %>
 
-	<p>ライブ会場一覧</p>
-	<% @places.each do |place| %>
-	<%= place.place %>
-	<%= link_to "編集", edit_place_path(place.id) %>
-	<%= link_to "削除", place_path(place.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
-	<% end %>
-<%= link_to "アーティスト一覧へ戻る", artists_path %>
-<%= link_to "フェス一覧へ戻る", fes_path %>
+			<div class="field">
+				<p>会場名</p>
+				<%= f.text_field :place %>
+			</div>
+
+			<div class="actions" style="padding-top: 15px;">
+				<%= f.submit '登録' %>
+			</div>
+
+			<% end %>
+
+			<h4>会場一覧</h4>
+			<table class="table">
+				<% @places.each do |place| %>
+
+				<tr>
+					<td style="color: white;">
+						<%= place.place %>
+					</td>
+					<td>
+						<%= link_to "編集", edit_place_path(place.id) %>
+					</td>
+					<td>
+						<%= link_to "削除", place_path(place.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+					</td>
+				</tr>
+
+			    <% end %>
+			</table>
+
+		</div>
+	</div>
 </div>
+

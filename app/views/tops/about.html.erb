@@ -1,5 +1,28 @@
-<h1>Tops#about</h1>
-<p>このサイトについて
-タイトル
-アプリの目的、説明
-（背景にっぽい画像。できれば時間で切り替わる）</p>
+<div class="container-fluid about">
+	<div class="info">
+		<div class="info-image">
+			<%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+		</div>
+		<div class="info-title">
+			About
+		</div>
+	</div>
+</div>
+
+<%= render "partial/flash" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6">
+			<div class="about-title line">
+				ロックを楽しむすべての人へ
+			</div>
+			<div class="about-body">
+				このアプリでは<br>
+				ライブ・フェスの感動を共有することができます<br>
+				感動を共有した仲間のお気に入りアーティストをチェックすることで<br>
+				新たなお気に入りアーティストを発見できます
+			</div>
+		</div>
+	</div>
+</div>

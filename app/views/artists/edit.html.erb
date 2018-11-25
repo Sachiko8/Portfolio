@@ -1,13 +1,51 @@
+<%= render "partial/flash" %>
+
 <div class="container">
-<p>アーティスト編集</p>
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
 
-<%= form_for(@artist) do |f| %>
-  <p>アーティスト名：<%= f.text_field :artist_name %></p>
-  <p>アーティスト名フリガナ：<%= f.text_field :artist_kana %></p>
-  <p>アーティスト説明：<%= f.text_field :artist_details %></p>
-  <p>アーティスト画像：<%= f.attachment_field :thumbnails_images, multiple: true %></p>
-  <%= f.submit '更新' %>
-<% end %>
+			<h4>アーティスト編集</h4>
 
-<%= link_to "戻る", artist_path(@artist) %>
+			<%= form_for(@artist) do |f| %>
+
+			<div class="field">
+				<p>
+					アーティスト名
+				</p>
+				<%= f.text_field :artist_name %>
+
+  				<p>
+  					アーティスト名フリガナ
+  				</p>
+  				<%= f.text_field :artist_kana %>
+
+  				<p>
+  					アーティスト説明
+  				</p>
+  				<%= f.text_field :artist_details %>
+
+  				<p>
+  					アーティスト画像
+  				</p>
+  				<p style="font-size: 12px;">
+  					<%= f.attachment_field :thumbnails_images, multiple: true %>
+  				</p>
+			</div>
+
+			<div class="actions">
+				<%= f.submit '更新' %>
+			</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
+			<%= link_to "戻る", artist_path(@artist), class: "btn btn-default" %>
+		</div>
+	</div>
 </div>

@@ -1,42 +1,55 @@
 <table class="table" >
   <div class="social">
-<% live.comments.each do |comment| %>
-  <% unless comment.id.nil? %>
-                <tr>
-              <td>
-                <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '100x100' %>
-    			<p><%= comment.user.nickname %>さん</p>
-    			<p>コメント：<%= comment.contents %></p>
 
+    <% comments.each do |comment| %>
+    <% unless comment.id.nil? %>
 
-<% if current_user %>
-<% if comment.like_user(current_user.id) %>
-  <li>
-    <%= link_to artist_live_comment_likes_path(@artist, @live, comment), method: :delete do %>
-      <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
-      <%= comment.likes.count %> いいね
+    <tr>
+        <td style="width: 10%">
+           <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '60x60' %>
+        </td>
+
+        <td style="width: 20%">
+            <%= link_to favorites_list_path(comment.user.id) do %>
+            <p><%= comment.user.nickname %>さん</p>
+            <% end %>
+        </td>
+        <td style="width: 50%">
+    			<p><%= comment.contents %></p>
+        </td>
+
+        <td style="width: 15%">
+          <% if current_user %>
+          <% if comment.like_user(current_user.id) %>
+          <li>
+            <%= link_to artist_live_comment_likes_path(@artist, @live, comment), method: :delete do %>
+            <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
+            <%= comment.likes.count %> いいね
+            <% end %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to artist_live_comment_likes_path(@artist, @live, comment), method: :post do %>
+            <i class="fas fa-heart" aria-hidden="true" style="color: white;" ></i>
+            <%= comment.likes.count %> いいね
+            <% end %>
+          </li>
+          <% end %>
+          <% end %>
+        </td>
+
+        <td style="width: 5%">
+          <% if comment.user == current_user || current_admin %>
+          <p><%= link_to '削除', artist_live_comment_path(artist, live, comment.id), method: :delete, remote: true, class: "btn btn-default" %></p>
+          <% end %>
+          <% end %>
+        </td>
+    </tr>
+
     <% end %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to artist_live_comment_likes_path(@artist, @live, comment), method: :post do %>
-    <i class="far fa-heart" aria-hidden="true" ></i>
-      <%= comment.likes.count %> いいね
-    <% end %>
-  </li>
-<% end %>
-<% end %>
-    			</td>
-     <td>
-    <% if comment.user == current_user || current_admin %>
-      <p><%= link_to 'コメントを削除する', artist_live_comment_path(artist, live, comment.id), method: :delete, remote: true %></p>
-    <% end %>
-    <% end %>
-</td>
-</tr>
-  
-<% end %>
-</div>
+  </div>
 </table>
+
+<%= paginate comments, class: "pagenate" %>
 
 

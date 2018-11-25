@@ -15,36 +15,162 @@
 
  */
 
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body{
+
+body {
 	background-color: #222222;
+	color: white;
+	font-family: 'Exo', sans-serif;
+}
+
+p {
+	color: white;
+	padding-top: 20px;
+	margin:  0;
+    line-height: 2;
+}
+
+li {
+  list-style: none;
+  padding-top: 20px;
+}
+
+a {
 	color: white;
 }
 
-.navbar-default{
+h2 {
+  color: black;
+}
+
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
+    padding: 3px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #222222;
+    background-color: #222222;
+}
+
+.line {
+    margin:  0;             /* デフォルトCSS打ち消し */
+    font-size:  24px;       /* 文字サイズ指定 */
+    position:  relative;    /* 位置調整 */
+    font-weight:  normal;   /* 文字の太さ調整 */
+    margin-bottom: 15px;    /* 周りの余白指定 */
+    border-bottom: solid 4px rgba(0,153,255,0.7);        /* 線指定 */
+    border-radius: 0px 0px 160px 180px/0px 0px 20px 4px;    /* 角丸指定 */
+}
+
+table td {
+  word-break : break-all;
+}
+
+.form-control {
+	width: 10%;
+}
+
+.info{
+	text-align: center;
+	padding-top: 70px;
+	padding-bottom: 20px;
+}
+
+.info-title:before {
+    content: "";
+    width: 48px;
+    height: 1px;
+    background-color: #fff;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.info-title{
+	font-size: 20px;
+	padding-top: 30px;
+}
+
+.top-image {
+  background-image: url(top.jpg);
+  width: 100%;
+  height: 400px;
+  background-size: 100% 100%;
+}
+
+.artist-index-image {
+  background-image: url(artist.jpg);
+  width: 100%;
+  height: 400px;
+  background-size: 100% 100%;
+}
+
+.live-image {
+  width: 100%;
+  background-image: url(live.jpg);
+  width: 100%;
+  height: 400px;
+  background-size: 100% 100%;
+}
+
+.fes-image {
+  background-image: url(fes1.jpg);
+  width: 100%;
+  height: 400px;
+  background-size: 100% 100%;
+}
+
+.fes-image2 {
+  background-image: url(IMG.jpg);
+  width: 100%;
+  height: 400px;
+  background-size: 100% 100%;
+}
+
+.about {
+  background-image: url(IMG2.jpg);
+  width: 100%;
+  height: 400px;
+  background-size: 100% 100%;
+}
+
+
+.favorite {
+  background-image: url(IMG1.jpg);
+  width: 100%;
+  height: 400px;
+  background-size: 100% 100%;
+}
+
+.pickup{
+	font-size: 300%;
+	color: #BB0000;
+	text-align: center;
+}
+
+.artist-index {
+	margin-top: 20px;
+}
+
+.artist-image{
+	width: 350px;
+	height: 300px;
+}
+
+.navbar-default {
 	background-color: #000000;
 	border-color: #000000;
 	margin-bottom: 0;
 }
 
-
-.form-control{
-	width: 10%;
+.btn-default {
+    color: #f5f5f5;
+    background-color: #333;
+    border-color: #333;
 }
 
-.top-image {
-  width: 100%;
-  background-image: url(top.jpg);
-  width: 100%;
-  height: 500px;
-  background-size: 100% 100%;
-}
-.top-artistname{
+.top-artistname {
 	text-align: center;
-	font-family: 'Exo', sans-serif;
 	font-size: 130%;
 	color: white;
 }
@@ -52,13 +178,6 @@ body{
 .bx-wrapper img{
 	margin: auto;
 	padding: 0;
-}
-
-
-.pickup{
-	font-family: 'Exo', sans-serif;
-	font-size: 400%;
-	color: #BB0000;
 }
 
 .top-artist{
@@ -73,10 +192,52 @@ body{
 .row{
 	margin-top:30px;
 }
-.artist-image{
-	width: 350px;
-	height: 300px;
+
+.comment-form {
+	color: black;
 }
-.show-artistname{
-	margin-top: 10px;
+
+.actions {
+	color: black;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.field {
+  color: black;
+}
+
+.about-title {
+	font-size: 250%;
+	text-align: center;
+}
+
+.about-body {
+	text-align: center;
+	padding-top: 30px;
+	font-size: 120%;
+}
+
+.artist-destroy {
+  text-align: center;
+}
+
+input {
+  width: 200px;
+}
+
+.flash {
+  text-align: center;
+  font-size: 120%;
+  padding-top: 20px;
+  background-color: #333;
+  padding-bottom: 20px;
+}
+
+#error_explanation {
+  text-align: center;
+  font-size: 120%;
+  padding-top: 20px;
+  background-color: #333;
+  padding-bottom: 20px;
 }

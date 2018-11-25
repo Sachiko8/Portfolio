@@ -1,15 +1,30 @@
+<%= render "partial/flash" %>
+
 <div class="container">
-	<p>フェス編集</p>
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
 
-<%= form_for(@fes) do |f| %>
-	<p>日時</p>
-	<%= f.date_select :fes_day %>
-  <p>フェス会場</p>
-    <%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
-  <p>フェス名</p>
-  <%= f.text_field :fes_name %>
+			<h4>フェス編集</h4>
 
-	<%= f.submit '追加' %>
-	<% end %>
-	<%= link_to "戻る", fes_path %>
+			<%= form_for(@fes) do |f| %>
+
+			<div class="field">
+				<p>日時</p>
+				<%= f.date_select :fes_day %>
+
+				<p>フェス会場</p>
+				<%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
+
+				<p>フェス名</p>
+				<%= f.text_field :fes_name %>
+			</div>
+
+			<div class="actions">
+			<%= f.submit '更新' %>
+			</div>
+
+			<% end %>
+
+		</div>
+	</div>
 </div>

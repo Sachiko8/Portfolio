@@ -1,4 +1,12 @@
 class LikesController < ApplicationController
+  before_action :correct_user, only:[ :create, :destroy]
+
+  def correct_user
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
+
   def create
   	artist = Artist.find(params[:artist_id])
     live = Live.find(params[:live_id])

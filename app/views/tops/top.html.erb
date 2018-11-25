@@ -1,29 +1,41 @@
 <div class="container-fluid top-image">
+	<div class="info">
+		<div class="info-image">
+			<%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+		</div>
+		<div class="info-title">
+			Top
+		</div>
+	</div>
 </div>
+
+<%= render "partial/flash" %>
+
 <div class="container">
-<p class="pickup">Pick Up!!</p>
-<div class="row">
+	<div class="row">
+		<p class="pickup">
+			Pick Up!!
+		</p>
 
-<% @artists.each do |artist| %>
-<div class="col-xs-6 col-md-3 top-artist">
-	<%= link_to artist_path(artist.id) do %>
-
-<div class="thumbnail">
-<ul class="bxslider">
-<% if artist.thumbnails.present? %>
-    <% artist.thumbnails.each do |image| %>
-    <%= attachment_image_tag image, :image, size: '200x200' %>
-  <% end %>
-  <% else %>
-    <%= image_tag 'no_image.png', size: '200x200' %>
-<% end %>
-
-</ul>
-<p class="top-artistname"><%= artist.artist_name %></p>
-</div>
-<% end %>
-
-</div>
-<% end %>
-
+		<% @artists.each do |artist| %>
+		<div class="col-xs-6 col-md-3 top-artist">
+			<%= link_to artist_path(artist.id) do %>
+			<div class="thumbnail">
+				<ul class="bxslider">
+					<% if artist.thumbnails.present? %>
+					<% artist.thumbnails.each do |image| %>
+					<%= attachment_image_tag image, :image, size: '200x200' %>
+					<% end %>
+ 				    <% else %>
+ 				    <%= image_tag 'no_image.png', size: '200x200' %>
+ 				    <% end %>
+ 				</ul>
+ 				<p class="top-artistname">
+ 					<%= artist.artist_name %>
+ 				</p>
+ 			</div>
+ 			<% end %>
+ 		</div>
+ 		<% end %>
+ 	</div>
 </div>

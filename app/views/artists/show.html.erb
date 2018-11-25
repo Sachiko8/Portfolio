@@ -1,78 +1,84 @@
+<%= render "partial/flash" %>
+
 <div class="container">
   <div class="row">
-<div class="col-md-offset-2 col-md-8">
-<ul class="bxslider">
-<% if @artist.thumbnails.present? %>
-  <% @artist.thumbnails.each do |image| %>
-    <li><%= attachment_image_tag image, :image, class: "artist-image" %></li>
-  <% end %>
-  <% else %>
-    <li><%= image_tag 'no_image.png', class: "artist-image" %></li>
-<% end %>
-</ul>
+    <div class="col-md-offset-2 col-md-8">
 
+      <ul class="bxslider">
+        <% if @artist.thumbnails.present? %>
+        <% @artist.thumbnails.each do |image| %>
+        <li>
+          <%= attachment_image_tag image, :image, class: "artist-image" %>
+        </li>
+        <% end %>
+        <% else %>
+        <li>
+          <%= image_tag 'no_image.png', class: "artist-image" %>
+        </li>
+        <% end %>
+      </ul>
 
-<p class="show-artistname"><%= @artist.artist_name %></p><br>
-<p><%= @artist.artist_details %></p><br>
-<% if current_user %>
-              <% if @artist.favorite_user(current_user.id) %>
-              <%= link_to artist_favorites_path(@artist.id), method: :delete, class: "glyphicon btn btn-default" do %>
-              <span class="glyphicon-star-empty">お気に入り済</span>
-              <% end %>
-              <% else %>
-              <%= link_to artist_favorites_path(@artist.id), method: :post, class: "glyphicon btn btn-default" do %>
-              <span class="glyphicon-plus">お気に入り追加</span>
-              <% end %>
-              <% end %>
-              <%end%>
+      <p class="line">
+        <%= @artist.artist_name %>
 
+        <% if current_user %>
+        <% if @artist.favorite_user(current_user.id) %>
+        <%= link_to artist_favorites_path(@artist.id), method: :delete, class: "btn btn-default" do %>
+        <i class="fas fa-star" aria-hidden="true" style="color: yellow;" >
+        </i>
+        <% end %>
 
+        <% else %>
+        <%= link_to artist_favorites_path(@artist.id), method: :post, class: "btn btn-default" do %>
+        <i class="far fa-star" aria-hidden="true">
+        </i>
+        <% end %>
+        <% end %>
 
-<p>ライブ一覧</p>
-<table class="table">
-  <tr>
-    <th>
-      <p>日程</p>
-    </th>
-    <th>
-      <p>会場</p>
-    </th>
-    <th>
-      <p>ライブ名</p>
-    </th>
-    <th></th>
-  </tr>
+        <% end %>
+      </p><br>
 
-<% @artist.lives.each do |live| %>
-<tr>
-  <%= link_to artist_live_path(live.id) do %>
-    <td>
-      <%= live.when.strftime('%Y/%m/%d') %>
-    </td>
-    <td>
-      <%= Place.find(live.place_id).place %>
-    </td>
-    <td>
-      <%= live.live_title %>
-    </td>
-    <% end %>
-    <td>
-      <%= link_to "ライブ詳細", artist_live_path(@artist, live.id) %>
+      <p>
+        <%= @artist.artist_details %>
+      </p><br>
+
+      <p class="line">
+        Share Live Inspiration
+      </p>
+
+      <table class="table">
+        <% @artist.lives.each do |live| %>
+        <tr>
+          <td>
+            <%= link_to artist_live_path(@artist, live.id) do %>
+            <%= live.when.strftime('%Y/%m/%d') %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to artist_live_path(@artist, live.id) do %>
+            <%= Place.find(live.place_id).place %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to artist_live_path(@artist, live.id) do %>
+            <%= live.live_title %>
+            <% end %>
+          </td>
+          <td>
+            <% if current_admin %>
+            <%= link_to "編集", edit_artist_live_path(@artist, live.id), class: "btn btn-default" %>
+            <%= link_to "削除", artist_live_path(@artist, live.id), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+
       <% if current_admin %>
-      <%= link_to "ライブ編集", edit_artist_live_path(@artist, live.id) %>
-      <%= link_to "ライブ削除", artist_live_path(@artist, live.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
-    <% end %>
-  </td>
-</tr>
-<% end %>
-</table>
-
-<% if current_admin %>
-    <%= link_to "アーティスト編集", edit_artist_path(@artist) %>
-    <%= link_to "ライブ追加", new_artist_live_path(@artist) %>
-<% end %>
-<%= link_to "戻る", artists_path%>
-</div>
-</div>
+      <%= link_to "アーティスト編集", edit_artist_path(@artist), class: "btn btn-default" %>
+      <%= link_to "ライブ追加", new_artist_live_path(@artist), class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 

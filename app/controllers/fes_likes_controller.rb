@@ -1,11 +1,19 @@
 class FesLikesController < ApplicationController
+  before_action :correct_user, only:[ :create, :destroy]
+
+  def correct_user
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
+
 	def create
     fes = Fe.find(params[:fe_id])
     comment = FesComment.find(params[:fes_comment_id])
     like = current_user.fes_likes.new(fes_comment_id: params[:fes_comment_id])
     if like.save
-       redirect_to fe_path(fes)
-   end
+      redirect_to fe_path(fes)
+    end
   end
 
   def destroy

@@ -1,58 +1,120 @@
+<div class="container-fluid fes-image2">
+  <div class="info">
+    <div class="info-image">
+      <%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+    </div>
+    <div class="info-title">
+      Share Festival Inspiration
+    </div>
+  </div>
+</div>
+
+<%= render "partial/flash" %>
+
 <div class="container">
-<p>フェス詳細</p>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
 
-    <h4>コメント</h4>
-
-    <div id="comments_area">
+      <p class="line">
+        <%= @fe.fes_name %>
+      </p>
 
       <table class="table" >
-  <div class="social">
-<% @comments.each do |comment| %>
-  <% unless comment.id.nil? %>
-                <tr>
-              <td>
-          <p><%= comment.user.nickname %>さん</p>
-          <p>コメント：<%= comment.contents %></p>
-<% if current_user %>
-<% if comment.fes_like_user(current_user.id) %>
-  <li>
-    <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :delete do %>
-      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-      <%= comment.fes_likes.count %> いいね
-    <% end %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :post do %>
-    <i class="far fa-heart" aria-hidden="true"></i>
-      <%= comment.fes_likes.count %> いいね
-    <% end %>
-  </li>
-<% end %>
-<% end %>
+        <div class="social">
+          <% @comments.each do |comment| %>
+          <% unless comment.id.nil? %>
+            <tr>
 
+              <td style="width: 10%">
+               <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '60x60' %>
+               </td>
 
-          </td>
-     <td>
-    <% if comment.user == current_user || current_admin %>
-      <p><%= link_to 'コメントを削除する', fe_fes_comment_path(@fe, comment), method: :delete, remote: true %></p>
-    <% end %>
-</td>
-</tr>
-  <% end %>
-<% end %>
-</div>
-</table>
-<% if current_user %>
+               <td style="width: 20%">
+                <%= link_to favorites_list_path(comment.user.id) do %>
+                <p><%= comment.user.nickname %>さん</p>
+                <% end %>
+              </td>
 
-<%= form_for [@fe, @comment] do |f| %>
-  <div>
-    <%= f.text_area :contents %>
+              <td style="width: 50%">
+                <p><%= comment.contents %></p>
+              </td>
+
+              <td style="width: 15%">
+                <% if current_user %>
+                <% if comment.fes_like_user(current_user.id) %>
+
+                <li>
+                  <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :delete do %>
+                  <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
+                  <%= comment.fes_likes.count %> いいね
+                  <% end %>
+                </li>
+
+                <% else %>
+                <li>
+                  <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :post do %>
+                  <i class="fas fa-heart" aria-hidden="true" style="color: white;" ></i>
+                  <%= comment.fes_likes.count %> いいね
+                  <% end %>
+                </li>
+
+                <% end %>
+                <% end %>
+              </td>
+
+              <td style="width: 5%">
+                <% if comment.user == current_user || current_admin %>
+                <p>
+                  <%= link_to '削除', fe_fes_comment_path(@fe, comment), method: :delete, remote: true %>
+                </p>
+                <% end %>
+              </td>
+
+            </tr>
+            <% end %>
+            <% end %>
+          </div>
+        </table>
+
+        <%= paginate @comments, class: "pagenate" %>
+
+        <div>
+          <% if user_signed_in? %>
+          <% if current_user %>
+
+          <i class="far fa-comment-dots" aria-hidden="true"></i>
+          <span>コメントする</span>
+
+          <%= form_with(model: [@fe, @comment], remote: true, local: true ) do |f| %>
+
+          <div class="comment-form">
+            <%= f.text_area :contents, rows:'5', :size=>"30" ,placeholder: "コメントをここに" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "送信" %>
+          </div>
+
+          <% end %>
+
+          <% end %>
+          <% end %>
+        </div>
+
+        <% unless current_user %>
+        <p>
+          <%= link_to new_user_registration_path do %>
+          <i class="far fa-comment-dots"></i>
+          コメントするには会員登録をしてください
+          <% end %>
+        </p>
+        <% end %>
+
+        <%= link_to "戻る", fes_path, class: "btn btn-default"%>
+
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "コメントをする" %>
-  </div>
-<% end %>
-<% end %>
-<%= link_to "戻る", fes_path %>
 </div>
+
+
+

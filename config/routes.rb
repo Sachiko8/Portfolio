@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 }
 
 resources :users, only:[:index, :show, :edit, :update, :destroy]
+get '/users/:id/favorites' => 'users#favorites_list', as: 'favorites_list'
 
 resources :artists do
 	resource :favorites, only:[:create, :destroy]
@@ -34,7 +35,6 @@ resources :fes do
 	end
 
 
-get "/favorites" => "favorites#index"
 resources :places, only:[:new, :create, :edit, :update, :destroy]
 
 get "/top" => "tops#top"

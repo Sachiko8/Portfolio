@@ -1,17 +1,34 @@
+<%= render "partial/flash" %>
+
 <div class="container">
-	<p>ライブ新規登録</p>
-<%= @artist.artist_name %>
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
 
-<%= form_for [@artist, @live] do |f| %>
-	<p>日時</p>
-	<%= f.date_select :when %>
-  <p>ライブ会場</p>
-    <%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
-  <p>ライブ名</p>
-  <%= f.text_field :live_title %>
+			<h4>ライブ新規登録</h4>
 
-	<%= f.submit '追加' %>
-	<% end %>
+			<%= @artist.artist_name %>
 
-	    <%= link_to "アーティスト詳細に戻る", artist_path(@artist.id) %>
+			<%= form_for [@artist, @live] do |f| %>
+
+			<div class="field">
+				<p>日時</p>
+				<%= f.date_select :when %>
+
+  				<p>ライブ会場</p>
+    			<%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
+
+  				<p>ライブ名</p>
+  				<%= f.text_field :live_title %>
+			</div>
+
+			<div class="actions">
+			<%= f.submit '登録' %>
+			</div>
+
+			<% end %>
+
+			<%= link_to "アーティスト詳細に戻る", artist_path(@artist.id), class: "btn btn-default" %>
+
+		</div>
 	</div>
+</div>

@@ -1,15 +1,17 @@
 class FavoritesController < ApplicationController
-  def index
-    favorites = current_user.favorites
-    artists = favorites.pluck(:artist_id)
-    @artists = Artist.where(id: artists).order(artist_kana: "ASC")
+  before_action :correct_user, only:[ :create, :destroy]
+
+  def correct_user
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 
   def create
   	artist = Artist.find(params[:artist_id])
     favorite = current_user.favorites.new(artist_id: artist.id)
     if favorite.save
-      redirect_to artists_path
+      redirect_to artist_path(artist.id)
     end
   end
 
@@ -17,7 +19,7 @@ class FavoritesController < ApplicationController
   	artist = Artist.find(params[:artist_id])
     favorite = current_user.favorites.find_by(artist_id: artist.id)
     if favorite.destroy
-      redirect_to artists_path
+      redirect_to artist_path(artist.id)
     end
   end
 

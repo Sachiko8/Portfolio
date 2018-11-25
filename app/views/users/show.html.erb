@@ -1,41 +1,48 @@
+<%= render "partial/flash" %>
+
 <div class="container">
-  <p>ユーザー情報</p>
-<table class="table" >
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <p class="line">
+        Profile
+      </p>
+
+      <table class="table" >
         <tr>
+          <td>Image</td>
           <td>
             <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '100x100' %>
-
-
           </td>
         </tr>
         <tr>
           <td>
-            <p>名前</p>
+            <p>Name</p>
           </td>
           <td>
-            <%= @user.user_name %>
+            <p><%= @user.user_name %></p>
           </td>
         </tr>
         <tr>
           <td>
-            <p>ニックネーム</p>
+            <p>Nickname</p>
           </td>
           <td>
-            <%= @user.nickname %>
+            <p><%= @user.nickname %></p>
           </td>
         </tr>
         <tr>
           <td>
-            <p>メールアドレス</p>
+            <p>E-mail</p>
           </td>
           <td>
-            <%= @user.email %>
+            <p><%= @user.email %></p>
           </td>
         </tr>
-  </table>
+      </table>
 
-  <%= link_to "編集", edit_user_path(@user) %>
-  <%= link_to "退会する", user_path(@user), method: :delete %>
+      <%= link_to "編集", edit_user_path(@user), class: "btn btn-default" %>
+      <%= link_to "退会する", user_path(@user), method: :delete, class: "btn btn-default" %>
 
-  <%= link_to "戻る", root_path %>
+    </div>
+  </div>
 </div>

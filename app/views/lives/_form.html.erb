@@ -1,8 +1,18 @@
+<% if current_user %>
+
+<i class="far fa-comment-dots" aria-hidden="true"></i>
+<span>コメントする</span>
+
 <%= form_with(model: [artist, live, comment], remote: true, local: true ) do |f| %>
-  <div>
-    <%= f.text_area :contents %>
-  </div>
-  <div class="actions">
-    <%= f.submit "コメントをする" %>
-  </div>
+
+<div class="comment-form">
+	<%= f.text_area :contents, rows:'5', :size=>"30" ,placeholder: "コメントをここに" %>
+</div>
+
+<div class="actions">
+	<%= f.submit "送信" %>
+</div>
+
+<% end %>
+
 <% end %>
