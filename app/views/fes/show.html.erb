@@ -1,7 +1,7 @@
 <div class="container-fluid fes-image2">
   <div class="info">
     <div class="info-image">
-      <%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+      <%= image_tag("/images/logo22.png", :size => "220x220", :alt => "logo") %>
     </div>
     <div class="info-title">
       Share Festival Inspiration
@@ -26,7 +26,7 @@
             <tr>
 
               <td rowspan="2">
-               <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '60x60' %>
+               <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "/images/no_image.png", size: '60x60' %>
                </td>
 
               <td>

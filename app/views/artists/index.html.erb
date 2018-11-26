@@ -1,7 +1,7 @@
 <div class="container-fluid artist-index-image">
 	<div class="info">
 		<div class="info-image">
-			<%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+			<%= image_tag("/images/logo22.png", :size => "220x220", :alt => "logo") %>
 		</div>
 		<div class="info-title">
 			Artist
@@ -24,7 +24,7 @@
 				<%= attachment_image_tag image, :image, size: '200x200' %>
 				<% end %>
 				<% else %>
-				<%= image_tag 'no_image.png', size: '200x200' %>
+				<%= image_tag '/images/no_image.png', size: '200x200' %>
 				<% end %>
 			</ul>
 			<p class="top-artistname">
