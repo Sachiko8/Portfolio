@@ -1,0 +1,27 @@
+<%= render "partial/flash" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-9">
+
+			<h4>お問い合わせ一覧</h4>
+
+			<table class="table">
+
+				<% @messages.each do |message| %>
+				<tbody>
+					<tr>
+						<td style="width: 10%"><p><%= message.name %></p></td>
+						<td style="width: 20%"><p><%= message.mail %></p></td>
+						<td style="width: 20%"><p><%= message.created_at.strftime('%Y年%m月%d日') %></p></td>
+						<td style="width: 40%"><p><%= message.text %></p></td>
+						<td style="width: 10%">
+							<%= link_to "削除", message_path(message.id), method: :delete, class: "btn btn-default" %>
+						</td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

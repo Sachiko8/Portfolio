@@ -37,6 +37,8 @@ resources :fes do
 
 resources :places, only:[:new, :create, :edit, :update, :destroy]
 
+resources :messages, only:[:new, :create, :index, :destroy]
+
 get "/top" => "tops#top"
 get "/about" => "tops#about"
 

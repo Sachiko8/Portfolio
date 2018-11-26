@@ -88,7 +88,7 @@
           <%= form_with(model: [@fe, @comment], remote: true, local: true ) do |f| %>
 
           <div class="comment-form">
-            <%= f.text_area :contents, rows:'5', :size=>"30" ,placeholder: "コメントをここに" %>
+            <%= f.text_area :contents, :size=>"50" ,placeholder: "コメントをここに" %>
           </div>
 
           <div class="actions">

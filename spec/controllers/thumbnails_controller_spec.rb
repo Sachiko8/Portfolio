@@ -1,0 +1,1 @@
+thumbnails_controller_spec.rb
