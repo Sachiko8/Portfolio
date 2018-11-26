@@ -1,2 +1,42 @@
-<h1>Lives#show</h1>
-<p>Find me in app/views/lives/show.html.erb</p>
+<div class="container-fluid live-image">
+	<div class="info">
+		<div class="info-image">
+			<%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+		</div>
+		<div class="info-title">
+			Share Live Inspiration
+		</div>
+	</div>
+</div>
+
+<%= render "partial/flash" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<p class="line">
+				<%= @artist.artist_name %>
+				<%= @live.live_title %>
+			</p>
+			<%= render partial:'lives/index', locals: {comments: @comments, live: @live, artist: @artist } %>
+			<div>
+				<% if user_signed_in? %>
+      			<%= render partial:'lives/form', locals: { comment: @comment, live: @live, artist: @artist } %>
+    			<% end %>
+			</div>
+
+			<% unless current_user %>
+        	<p>
+          		<%= link_to new_user_registration_path do %>
+          		<i class="far fa-comment-dots"></i>
+          		コメントするには会員登録をしてください
+          		<% end %>
+        	</p>
+        	<% end %>
+
+			<%= link_to "戻る", artist_path(@artist.id), class: "btn btn-default"%>
+  		</div>
+	</div>
+</div>
+
+

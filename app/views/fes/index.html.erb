@@ -1,0 +1,56 @@
+<div class="container-fluid fes-image">
+  <div class="info">
+    <div class="info-image">
+      <%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+    </div>
+    <div class="info-title">
+      Fes
+    </div>
+  </div>
+</div>
+
+<%= render "partial/flash" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <p class="line">
+        Share Festival Inspiration
+      </p>
+
+      <table class="table">
+        <% @fes.each do |fes| %>
+        <tr>
+          <td>
+            <%= link_to fe_path(fes.id) do %>
+            <%= fes.fes_name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to fe_path(fes.id) do %>
+            <%= fes.fes_day.strftime('%Y/%m/%d') %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to fe_path(fes.id) do %>
+    	      <%= Place.find(fes.place_id).place %>
+            <% end %>
+          </td>
+          <td>
+            <% if current_admin%>
+            <%= link_to "編集", edit_fe_path(fes.id), class: "btn btn-default" %>
+            <%= link_to "削除", fe_path(fes.id), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+
+      <% if current_admin %>
+      <%= link_to "フェス新規登録", new_fe_path, class: "btn btn-default" %>
+      <%= link_to "会場管理", new_place_path, class: "btn btn-default" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

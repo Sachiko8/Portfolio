@@ -1,0 +1,32 @@
+<%= render "partial/flash" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
+
+			<h4>フェス新規登録</h4>
+
+			<%= form_for(@fes) do |f| %>
+
+			<div class="field">
+
+				<p>日時</p>
+				<%= f.date_select :fes_day %>
+
+				<p>会場</p>
+    			<%= f.select :place_id, Place.all.collect { |p| [ p.place, p.id ] } %>
+
+  				<p>フェス名</p>
+  				<%= f.text_field :fes_name %>
+
+			</div>
+
+			<div class="actions">
+			<%= f.submit '登録' %>
+			</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>

@@ -1,2 +1,43 @@
-<h1>Artists#new</h1>
-<p>Find me in app/views/artists/new.html.erb</p>
+<%= render "partial/flash" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-offset-4 col-md-4">
+
+    	<h4>アーティスト新規登録</h4>
+
+    	<%= form_for(@artist) do |f| %>
+
+    	<div class="field">
+    		<p>
+    			アーティスト名
+    		</p>
+    		<%= f.text_field :artist_name %>
+
+  			<p>
+  				アーティスト名フリガナ
+  			</p>
+  			<%= f.text_field :artist_kana %>
+
+  			<p>
+  				アーティスト説明
+  			</p>
+  			<%= f.text_area :artist_details %>
+
+  			<p>
+  				アーティスト画像
+  			</p>
+  			<p style="font-size: 12px;">
+  				<%= f.attachment_field :thumbnails_images, multiple: true %>
+  			</p>
+        </div>
+
+        <div class="actions">
+        	<%= f.submit '登録' %>
+  		</div>
+
+		<% end %>
+
+	</div>
+  </div>
+</div>

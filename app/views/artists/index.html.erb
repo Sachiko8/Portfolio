@@ -1,2 +1,56 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<div class="container-fluid artist-index-image">
+	<div class="info">
+		<div class="info-image">
+			<%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
+		</div>
+		<div class="info-title">
+			Artist
+		</div>
+	</div>
+</div>
+
+<%= render "partial/flash" %>
+
+<div class="container artist-index">
+
+	<% @artists.each do |artist| %>
+
+	<div class="col-xs-6 col-md-3 top-artist">
+		<%= link_to artist_path(artist.id) do %>
+		<div class="thumbnail">
+			<ul class="bxslider">
+				<% if artist.thumbnails.present? %>
+				<% artist.thumbnails.each do |image| %>
+				<%= attachment_image_tag image, :image, size: '200x200' %>
+				<% end %>
+				<% else %>
+				<%= image_tag 'no_image.png', size: '200x200' %>
+				<% end %>
+			</ul>
+			<p class="top-artistname">
+				<%= artist.artist_name %>
+			</p>
+
+			<% if current_admin%>
+			<div class="artist-destroy">
+			<%= link_to "削除", artist_path(artist.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+		    </div>
+      		<% end %>
+		</div>
+		<% end %>
+	</div>
+
+	<% end %>
+
+</div>
+
+<div class="container" style= "text-align: center;">
+	<%= paginate @artists, class: "pagenate" %>
+</div>
+
+<div class="container">
+	<% if current_admin %>
+	<%= link_to "アーティスト新規登録", new_artist_path, class: "btn btn-default" %>
+	<%= link_to "会場管理", new_place_path, class: "btn btn-default" %>
+	<% end %>
+</div>

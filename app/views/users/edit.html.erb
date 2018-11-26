@@ -1,2 +1,37 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<%= render "partial/flash" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
+
+			<h4>ユーザー編集</h4>
+
+			<%= form_for @user do |f| %>
+
+			<div class="field">
+			<p>プロフィール画像</p>
+			<p style="font-size: 12px;">
+			<%= attachment_image_tag @user, :profile_image, size: '200x200', fallback: "no_image.png" %>
+			<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+			</p>
+
+			<p>名前</p>
+			<%= f.text_field :user_name, autofocus: true %>
+
+			<p>ニックネーム</p>
+			<%= f.text_field :nickname, autofocus: true %>
+
+			<p>メールアドレス</p>
+			<%= f.text_field :email, autofocus: true %>
+			</div>
+
+			<div class="actions">
+			<%= f.submit "情報更新" %>
+			</div>
+
+			<% end %>
+
+			<%= link_to "戻る", user_path(@user), class: "btn btn-default" %>
+		</div>
+	</div>
+</div>

@@ -1,2 +1,26 @@
-<h1>Places#edit</h1>
-<p>Find me in app/views/places/edit.html.erb</p>
+<%= render "partial/flash" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
+
+			<h4>会場編集</h4>
+
+			<%= form_for(@place) do |f| %>
+
+			<div class="field">
+				<p>会場名</p>
+				<%= f.text_field :place %>
+			</div>
+
+			<div class="actions" style="padding-top: 15px; padding-bottom: 15px;">
+				<%= f.submit '更新' %>
+			</div>
+
+			<% end %>
+
+			<%= link_to "会場登録に戻る", new_place_path, class: "btn btn-default" %>
+
+		</div>
+	</div>
+</div>

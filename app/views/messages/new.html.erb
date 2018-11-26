@@ -1,0 +1,32 @@
+<%= render "partial/flash" %>
+
+<div class = "container" >
+	<div class = "row" >
+		<div class="col-xs-offset-4 col-lg-4" >
+
+			<h4>お問い合わせフォーム</h4>
+
+			<%= form_for(@message) do |f| %>
+
+			<div class="field">
+
+			<p>名前</p>
+			<%= f.text_field :name %>
+
+			<p>メールアドレス</p>
+			<%= f.email_field :mail %>
+
+			<p>お問い合わせ内容</p>
+			<%= f.text_area :text %>
+
+			</div>
+
+			<div class="actions">
+				<%= f.submit "送信" %>
+			</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>

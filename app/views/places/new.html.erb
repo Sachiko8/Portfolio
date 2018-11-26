@@ -1,2 +1,44 @@
-<h1>Places#new</h1>
-<p>Find me in app/views/places/new.html.erb</p>
+<%= render "partial/flash" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-4 col-md-4">
+
+			<h4>会場登録</h4>
+
+			<%= form_for (@place) do |f| %>
+
+			<div class="field">
+				<p>会場名</p>
+				<%= f.text_field :place %>
+			</div>
+
+			<div class="actions" style="padding-top: 15px;">
+				<%= f.submit '登録' %>
+			</div>
+
+			<% end %>
+
+			<h4>会場一覧</h4>
+			<table class="table">
+				<% @places.each do |place| %>
+
+				<tr>
+					<td style="color: white;">
+						<%= place.place %>
+					</td>
+					<td>
+						<%= link_to "編集", edit_place_path(place.id) %>
+					</td>
+					<td>
+						<%= link_to "削除", place_path(place.id), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+					</td>
+				</tr>
+
+			    <% end %>
+			</table>
+
+		</div>
+	</div>
+</div>
+

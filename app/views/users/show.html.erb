@@ -1,2 +1,48 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= render "partial/flash" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <p class="line">
+        Profile
+      </p>
+
+      <table class="table" >
+        <tr>
+          <td>Image</td>
+          <td>
+            <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '100x100' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Name</p>
+          </td>
+          <td>
+            <p><%= @user.user_name %></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Nickname</p>
+          </td>
+          <td>
+            <p><%= @user.nickname %></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>E-mail</p>
+          </td>
+          <td>
+            <p><%= @user.email %></p>
+          </td>
+        </tr>
+      </table>
+
+      <%= link_to "編集", edit_user_path(@user), class: "btn btn-default" %>
+      <%= link_to "退会する", user_path(@user), method: :delete, class: "btn btn-default" %>
+
+    </div>
+  </div>
+</div>
