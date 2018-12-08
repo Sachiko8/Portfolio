@@ -10,7 +10,7 @@ class Artist < ApplicationRecord
     validates :artist_kana, presence: true
 
     def favorite_user(id)
-    favorites.find_by(user_id: id)
-  end
+      favorites.find_by(user_id: id)
+    end
 
 end

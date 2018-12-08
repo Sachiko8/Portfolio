@@ -28,6 +28,7 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find_by(id: params[:id])
+    @lives = @artist.lives.order(when: "ASC")
   end
 
   def edit

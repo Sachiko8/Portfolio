@@ -1,7 +1,7 @@
 <div class="container-fluid top-image">
 	<div class="info">
 		<div class="info-image">
-			<%= image_tag("/images/logo22.png", :size => "220x220", :alt => "logo") %>
+			<%= image_tag("logo22.png", :size => "220x220", :alt => "logo") %>
 		</div>
 		<div class="info-title">
 			Top
@@ -31,7 +31,7 @@
  				    <% end %>
  				</ul>
  				<p class="top-artistname">
- 					<%= artist.artist_name %>
+ 					<%= truncate(artist.artist_name, length: 10) %>
  				</p>
  			</div>
  			<% end %>

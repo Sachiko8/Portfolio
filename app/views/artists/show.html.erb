@@ -13,7 +13,7 @@
         <% end %>
         <% else %>
         <li>
-          <%= image_tag '/images/no_image.png', class: "artist-image" %>
+          <%= image_tag 'no_image.png', class: "artist-image" %>
         </li>
         <% end %>
       </ul>
@@ -47,7 +47,7 @@
       </p>
 
       <table class="table">
-        <% @artist.lives.each do |live| %>
+        <% @lives.each do |live| %>
         <tr>
           <td>
             <%= link_to artist_live_path(@artist, live.id) do %>

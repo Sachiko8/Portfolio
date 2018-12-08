@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites = @user.favorites
     artists = favorites.pluck(:artist_id)
-    @artists = Artist.where(id: artists).order(artist_kana: "ASC")
+    @artists = Artist.where(id: artists).page(params[:page]).order(artist_kana: "ASC")
   end
 
   private
