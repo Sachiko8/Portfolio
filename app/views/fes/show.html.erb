@@ -42,7 +42,7 @@
                 <li>
                   <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :delete do %>
                   <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
-                  <%= comment.fes_likes.count %> いいね
+                  <%= comment.fes_likes.count %>
                   <% end %>
                 </li>
 
@@ -50,7 +50,7 @@
                 <li>
                   <%= link_to fe_fes_comment_fes_likes_path(@fe, comment), method: :post do %>
                   <i class="fas fa-heart" aria-hidden="true" style="color: white;" ></i>
-                  <%= comment.fes_likes.count %> いいね
+                  <%= comment.fes_likes.count %>
                   <% end %>
                 </li>
 
