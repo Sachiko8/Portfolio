@@ -6,7 +6,7 @@ class Live < ApplicationRecord
 
     validates :when, presence: true
     validates :place_id, presence: true
-    validates :live_title, presence: true, length: { maximum: 50 }
+    validates :live_title, presence: true, length: { maximum: 100 }
     validates :artist_id, presence: true
 
 end
