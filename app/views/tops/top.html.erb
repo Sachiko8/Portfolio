@@ -18,7 +18,7 @@
 		</p>
 
 		<% @artists.each do |artist| %>
-		<div class="col-xs-6 col-md-3 top-artist">
+		<div class="col-md-3 col-xs-6 top-artist">
 			<%= link_to artist_path(artist.id) do %>
 			<div class="thumbnail">
 				<ul class="bxslider">
@@ -31,7 +31,7 @@
  				    <% end %>
  				</ul>
  				<p class="top-artistname">
- 					<%= truncate(artist.artist_name, length: 10) %>
+ 					<%= artist.artist_name %>
  				</p>
  			</div>
  			<% end %>

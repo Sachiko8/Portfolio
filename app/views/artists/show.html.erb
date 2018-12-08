@@ -56,12 +56,12 @@
           </td>
           <td>
             <%= link_to artist_live_path(@artist, live.id) do %>
-            <%= Place.find(live.place_id).place %>
+            <%= truncate(Place.find(live.place_id).place, length: 13) %>
             <% end %>
           </td>
           <td>
             <%= link_to artist_live_path(@artist, live.id) do %>
-            <%= live.live_title %>
+            <%= truncate(live.live_title, length: 40) %>
             <% end %>
           </td>
           <td>
