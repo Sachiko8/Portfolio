@@ -20,14 +20,14 @@
           <li>
             <%= link_to artist_live_comment_likes_path(@artist, @live, comment), method: :delete do %>
             <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
-            <%= comment.likes.count %> いいね
+            <%= comment.likes.count %>
             <% end %>
           </li>
           <% else %>
           <li>
             <%= link_to artist_live_comment_likes_path(@artist, @live, comment), method: :post do %>
             <i class="fas fa-heart" aria-hidden="true" style="color: white;" ></i>
-            <%= comment.likes.count %> いいね
+            <%= comment.likes.count %>
             <% end %>
           </li>
           <% end %>
