@@ -29,7 +29,7 @@
 			</ul>
 
 			<p class="top-artistname">
-				<%= artist.artist_name %>
+				<%= truncate(artist.artist_name, length: 10) %>
 			</p>
 
 			<% if current_admin%>
@@ -41,5 +41,7 @@
     </div>
 
     <% end %>
+
+    <%= paginate @artists, class: "pagenate" %>
 
 </div>

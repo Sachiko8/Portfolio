@@ -5,20 +5,16 @@
     <% unless comment.id.nil? %>
 
     <tr>
-        <td style="width: 10%">
-           <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "/images/no_image.png", size: '60x60' %>
+        <td rowspan="2">
+           <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.png", size: '60x60' %>
         </td>
 
-        <td style="width: 20%">
+        <td>
             <%= link_to favorites_list_path(comment.user.id) do %>
-            <p><%= comment.user.nickname %>さん</p>
+            <p class="comment-name"><%= comment.user.nickname %>さん</p>
             <% end %>
         </td>
-        <td style="width: 50%">
-    			<p><%= comment.contents %></p>
-        </td>
-
-        <td style="width: 15%">
+        <td>
           <% if current_user %>
           <% if comment.like_user(current_user.id) %>
           <li>
@@ -38,18 +34,24 @@
           <% end %>
         </td>
 
-        <td style="width: 5%">
-          <% if comment.user == current_user || current_admin %>
+        <td>
+        <% if comment.user == current_user || current_admin %>
           <p><%= link_to '削除', artist_live_comment_path(artist, live, comment.id), method: :delete, remote: true, class: "btn btn-default" %></p>
           <% end %>
-          <% end %>
+        </td>
+      </tr>
+
+        <tr>
+        <td colspan="3">
+        <p><%= comment.contents %></p>
         </td>
     </tr>
-
+<% end %>
     <% end %>
   </div>
 </table>
 
 <%= paginate comments, class: "pagenate" %>
+
 
 
